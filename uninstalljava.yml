@@ -1,0 +1,11 @@
+---
+- name: unistall java 0n ubuntu 20.04
+  hosts: all
+  become: yes
+  tasks:
+    - name: un install openjdk-8
+      apt: 
+        name: openjdk-8-jdk
+        autoremove: yes
+        state: absent
+

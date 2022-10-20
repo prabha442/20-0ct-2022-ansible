@@ -1,0 +1,9 @@
+---
+- name: install java on ubuntu 20.04
+  hosts: all
+  become: yes
+  tasks:
+    - name: install openjedk-8-jdk
+      apt: 
+        name: openjdk-8-jdk
+        state: present

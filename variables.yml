@@ -1,0 +1,6 @@
+mydir: /tmp/rajesh
+myfile: /etc/passwd
+mypkg:
+  - git
+  - tree 
+  - wget

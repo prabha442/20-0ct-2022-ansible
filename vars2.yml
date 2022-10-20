@@ -1,0 +1,29 @@
+---
+- name: thsi is last priority of variables
+  hosts: all
+  become: yes
+  vars:
+    mydir: /tmp/siva
+    myfile: /etc/passwd
+    mypkg: 
+      - git
+      - tree 
+      - wget
+
+  tasks: 
+    - name: create  one dir
+      file: 
+        path: "{{ mydir }}"
+        state: directory 
+
+    - name: copy file
+      copy: 
+        src: "{{ myfile }}"
+        dest: "{{ mydir }}"
+        mode: 0466
+
+    - name: install some packages
+      apt: 
+        name: "{{ mypkg }}"
+        update_cache: yes
+        state: present

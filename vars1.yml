@@ -1,0 +1,25 @@
+---
+- name: this playbook is used to demonstrste variables
+  hosts: all
+  become: yes
+  vars_files:
+    - /home/devops/playbooks/variables.yml
+
+  tasks: 
+    - name: this task is use for creating one directory {{ mydir }}
+      file: 
+        path: "{{ mydir }}"
+        state: directory
+        
+    - name: this task is use for copy file {{ myfile }}
+      copy: 
+        src: "{{ myfile }}"
+        dest: "{{ mydir }}"
+        mode: 0644
+
+    - name: this task is use for installing packages {{ packg }}
+      apt: 
+        name: "{{ mypkg }}"
+        update_cache: yes
+        state: present
+        
