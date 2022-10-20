@@ -1,0 +1,22 @@
+---
+- name: this is my first playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: create one devops user
+      user:
+        name: dev1
+        uid: 1020
+        shell: /bin/bash
+        comment: "devops user"
+        group: wipro
+
+    - name: copy files from remote to node
+      copy:
+        src: /home/devops/file1.txt
+        dest: /tmp/newfile1.txt
+        mode: 0400
+        owner: dev1
+
+
+

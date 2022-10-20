@@ -1,0 +1,12 @@
+---
+- name: this is an import_task yml file
+  hosts: web
+  become: yes
+  tasks:
+    - import_tasks: task1.yml
+
+- name: this second task yml
+  hosts: app
+  become: yes
+  tasks: 
+    - import_tasks: task2.yml

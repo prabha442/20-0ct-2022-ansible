@@ -1,0 +1,28 @@
+---
+- name: this is 2nd playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: insatll apache2 
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: start the apche2 service
+      service:
+         name: apache2
+         state: started
+
+    - name: copy the index.html
+      copy:
+        src: /home/devops/playbooks/index.html
+        dest: /var/www/html/index.html
+        mode: 0777
+        owner: dev1
+        group: wipro
+
+    - name: restarted the apache2 server
+      service:
+         name: apache2
+         state: restarted

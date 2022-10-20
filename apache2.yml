@@ -1,0 +1,29 @@
+---
+- name: install apache2 and copy some files and start service
+  hosts: all
+  become: yes
+  tasks:
+    - name: install apache2 on ubuntu
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: copy files from remote to node
+      copy: 
+        src: /home/devops/playbooks/sampleweb/
+        dest: /var/www/html/
+
+    - name: start the apache2 service
+      service: 
+         name: apache2
+         state: restarted
+         enabled: yes
+
+    - name: enable or change  port 80 to 9000
+      lineinfile:
+         path: /etc/apache2/ports.conf
+         regexp: ' ^Listen '
+         insertafter: ' ^#Listen '
+         line: Listen 9000
+

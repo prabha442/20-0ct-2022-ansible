@@ -1,0 +1,16 @@
+---
+- name: create user
+  user:
+    name: jony
+    uid: 1111
+    comment: "jony is the user"
+    shell: /bin/bash
+    group: wipro
+
+- name: create one file called devopsfile.txt
+  file:
+    path: /home/jony/devopsfile.txt
+    state: touch
+    owner: jony
+    group: wipro
+    mode: 0644
